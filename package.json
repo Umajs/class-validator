@@ -1,0 +1,42 @@
+{
+  "name": "@umajs/model",
+  "description": "umajs model",
+  "version": "0.0.1",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-typescript": "^0.14.0",
+    "eslint-watch": "^7.0.0",
+    "p-shells": "^3.0.3",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "fix": "esw src --fix --ext .ts",
+    "lint": "eslint src --ext .ts",
+    "lint-w": "esw src --clear --color -w --ext .ts",
+    "build-w": "tsc -w --inlineSourceMap",
+    "start": "parallelshell 'lint-w' 'build-w'",
+    "prebuild": "npm run lint",
+    "build": "tsc",
+    "prepublish": "npm run build"
+  },
+  "engine-strict": true,
+  "engines": {
+    "node": ">= 8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
