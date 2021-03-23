@@ -6,10 +6,26 @@ const RulesMap: Map<any, { [key: string]: Rule[] }> = new Map();
 export const TipsMap: Map<any, ValidateInfoList> = new Map();
 
 export default class Rule {
-    constructor({ validate, message }: { validate: (value: any) => boolean, message: string, }) {
-        this.validate = validate;
-        this.message = message ?? 'validate tips.';
+    constructor({
+        ruleType,
+        ruleParams = [],
+        validate,
+        message,
+    }: {
+        ruleType: string,
+        ruleParams?: any[],
+        validate: (value: any) => boolean,
+        message: string,
+    }) {
+        this.ruleType = ruleType;
+        this.ruleParams = ruleParams;
+        this.validate = validate ?? (() => { throw new Error('Params validate call not be null.') });
+        this.message = message ?? `${ ruleType } validate error.`;
     }
+
+    ruleType: string;
+
+    ruleParams: any[];
 
     /**
      * Result

@@ -1,8 +1,11 @@
+import { messages } from '../messages';
 import Rule from '../Rule';
 import { type } from '../utils';
 
-export function MinLength(n: number, message: string = 'min..not lt {0}'): PropertyDecorator {
+export function MinLength(n: number, message: string = messages.MinLength): PropertyDecorator {
     const rule = new Rule({
+        ruleType: 'MinLength',
+        ruleParams: [n],
         message,
         validate(value: any): boolean {
             if (type(value) !== 'number') return false;
@@ -14,8 +17,10 @@ export function MinLength(n: number, message: string = 'min..not lt {0}'): Prope
     return rule.add();
 }
 
-export function MaxLength(n: number, message: string = 'min..not gt {0}'): PropertyDecorator {
+export function MaxLength(n: number, message: string = messages.MaxLength): PropertyDecorator {
     const rule = new Rule({
+        ruleType: 'MaxLength',
+        ruleParams: [n],
         message,
         validate(value: any): boolean {
             if (type(value) !== 'number') return false;
