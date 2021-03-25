@@ -1,9 +1,9 @@
 {
   "name": "@umajs/model",
-  "description": "umajs model",
+  "description": "model validate",
   "version": "0.1.0",
   "files": [
-    "dist"
+    "app"
   ],
   "dependencies": {},
   "devDependencies": {

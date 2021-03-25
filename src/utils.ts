@@ -7,9 +7,11 @@ export const toString = (obj: any): string => Object.prototype.toString.call(obj
 
 export const type = (obj: any): Types => <Types>toString(obj).slice(8, -1).toLowerCase();
 
-export function Validate<T>(target: T, value?: T): [ValidateInfoList, T] {
+export function Validate<T extends Object>(target: T, value?: T): [ValidateInfoList, T] {
     if (value !== undefined) {
-        Object.assign(target, value);
+        Object.keys(target).forEach((key) => {
+            if (value.hasOwnProperty(key)) target[key] = value[key];
+        });
     }
 
     const ruleInfo = TipsMap.get(target);
