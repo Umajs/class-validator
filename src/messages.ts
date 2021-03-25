@@ -1,3 +1,5 @@
+import { assign } from './utils';
+
 export const messages = {
     Min: 'min not lt {0}',
     Max: 'max not gt {0}',
@@ -11,5 +13,7 @@ export const messages = {
 type RuleKeys = typeof messages;
 
 export default function Msg(params: { [P in keyof RuleKeys]?: string } = {}) {
-    Object.assign(messages, params);
+    assign(messages, params);
+
+    Object.freeze(messages);
 }
