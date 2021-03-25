@@ -1,5 +1,5 @@
 import { RulesMap, TipsMap } from './Rule';
-import { checker } from './utils';
+import { checker, hasOwnProperty } from './utils';
 
 export default class Model {
     constructor(_?: { [key: string]: any }, isValid: boolean = true) {
@@ -7,7 +7,7 @@ export default class Model {
             const rules = RulesMap.get(this.constructor) ?? {};
 
             for (const propertyKey in rules) {
-                if (rules.hasOwnProperty(propertyKey)) {
+                if (hasOwnProperty(rules, propertyKey)) {
                     let keyValue = this[propertyKey];
 
                     Object.defineProperty(this, propertyKey, {

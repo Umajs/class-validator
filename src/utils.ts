@@ -7,13 +7,15 @@ export const toString = (obj: any): string => Object.prototype.toString.call(obj
 
 export const type = (obj: any): Types => <Types>toString(obj).slice(8, -1).toLowerCase();
 
+export const hasOwnProperty = (target: PlainObject, key: string): boolean => ({}.hasOwnProperty.call(target, key));
+
 export const assign = (target: PlainObject, source: PlainObject): void => {
     if (type(target) !== 'object' || type(source) !== 'object') return;
 
     Object.keys(target).forEach((key) => {
-        if (source.hasOwnProperty(key)) target[key] = source[key];
+        if (hasOwnProperty(source, key)) target[key] = source[key];
     });
-}
+};
 
 export function Validate<T extends Object>(target: T, value?: T): [ValidateInfoList, T] {
     if (value !== undefined) {
