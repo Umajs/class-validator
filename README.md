@@ -4,9 +4,9 @@ demo
 
 ### USAGE
 ```js
-import { Validate, Type, Required, Min } from '@umajs/model';
+import { Model, Validate, Type, Required, Min } from '@umajs/model';
 
-class UserInfo {
+class UserInfo extends Model {
     constructor({ id, name, age }: UserInfo) {
         this.id = id;
         this.name = name;
@@ -37,6 +37,8 @@ try {
     user.age = -2;
     const [info3] = Validate(user);
     console.log('3>>', info3);  // >> { name: [ 'not null.' ], age: [ 'min..not lt {0}' ] }
+
+    console.log(JSON.stringify(user));
 } catch (err) {
     console.log('>>>', err);
 }
