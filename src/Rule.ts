@@ -18,8 +18,8 @@ export default class Rule {
     }) {
         this.ruleType = ruleType;
         this.ruleParams = ruleParams;
-        this.validate = validate ?? (() => { throw new Error('Params validate call not be null.') });
-        this.message = message ?? `${ ruleType } validate error.`;
+        this.validate = validate ?? (() => { throw new Error('Params validate call not be null.'); });
+        this.message = message ?? `${ruleType} validate error.`;
     }
 
     ruleType: string;

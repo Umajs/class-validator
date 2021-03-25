@@ -34,7 +34,7 @@ try {
     const [info3] = Validate(user);
     console.log('3>>', info3);  // >> { name: [ 'not null.' ], age: [ 'min..not lt {0}' ] }
 
-    console.log(user, JSON.stringify(user));
+    console.log(user, JSON.stringify(user), Object.assign({}, user));
 } catch (err) {
     console.log('>>>', err);
 }

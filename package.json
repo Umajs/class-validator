@@ -1,7 +1,7 @@
 {
   "name": "@umajs/model",
   "description": "umajs model",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "files": [
     "dist"
   ],
@@ -25,7 +25,7 @@
     "lint": "eslint src --ext .ts",
     "lint-w": "esw src --clear --color -w --ext .ts",
     "build-w": "tsc -w --inlineSourceMap",
-    "start": "parallelshell 'lint-w' 'build-w'",
+    "start": "parallelshell 'npm run lint-w' 'npm run build-w'",
     "prebuild": "npm run lint",
     "build": "tsc",
     "prepublish": "npm run build"

@@ -12,4 +12,4 @@ type RuleKeys = typeof messages;
 
 export default function Msg(params: { [P in keyof RuleKeys]?: string } = {}) {
     Object.assign(messages, params);
-};
+}
