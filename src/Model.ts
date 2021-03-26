@@ -1,12 +1,15 @@
-import { Rule } from '.';
-import { checker, hasOwnProperty } from './utils';
-
-export const TIPS = Symbol('Tips');
-export const RULES = Symbol('Rules');
+import Rule from './Rule';
+import { checker, hasOwnProperty, RULES, TIPS } from './utils';
 
 export default class Model {
     constructor(isValid: boolean = true) {
         const rulesObj: { [key: string]: Rule[] } = this.constructor[RULES];
+
+        Object.defineProperty(this, TIPS, {
+            enumerable: false,
+            writable: true,
+            value: {},
+        });
 
         for (const propertyKey in rulesObj) {
             if (!hasOwnProperty(rulesObj, propertyKey)) continue;
@@ -34,8 +37,6 @@ export default class Model {
             });
         }
     }
-
-    [TIPS]?: { [key: string]: string[] } = {};
 
     static [RULES]: { [key: string]: Rule[] } = {};
 }

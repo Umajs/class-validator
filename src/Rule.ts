@@ -1,4 +1,4 @@
-import { RULES } from './Model';
+import { RULES } from './utils';
 
 export default class Rule {
     constructor({

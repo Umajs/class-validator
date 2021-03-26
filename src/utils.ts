@@ -1,6 +1,9 @@
-import { TIPS } from './Model';
 import Rule from './Rule';
 import { PlainObject, Types } from './typings';
+
+export const TIPS = Symbol('Tips');
+
+export const RULES = Symbol('Rules');
 
 export const template = (s: string, ...params: any[]) => s.replace(/\{(\d+)\}/g, (_, index) => params[index]);
 
