@@ -2,36 +2,34 @@ import { RulesMap, TipsMap } from './Rule';
 import { checker, hasOwnProperty } from './utils';
 
 export default class Model {
-    constructor(_?: { [key: string]: any }, isValid: boolean = true) {
-        if (isValid) {
-            const rules = RulesMap.get(this.constructor) ?? {};
+    constructor(isValid: boolean = true) {
+        const rules = RulesMap.get(this.constructor) ?? {};
 
-            for (const propertyKey in rules) {
-                if (hasOwnProperty(rules, propertyKey)) {
-                    let keyValue = this[propertyKey];
+        for (const propertyKey in rules) {
+            if (!hasOwnProperty(rules, propertyKey)) continue;
 
-                    Object.defineProperty(this, propertyKey, {
-                        enumerable: true,
-                        set(v) {
-                            const result = checker(rules[propertyKey], v);
+            let keyValue = this[propertyKey];
 
-                            if (result.length > 0) {
-                                const tips = TipsMap.get(this) || {};
+            Object.defineProperty(this, propertyKey, {
+                enumerable: true,
+                set(v) {
+                    const result = checker(rules[propertyKey], v);
 
-                                tips[propertyKey] = result;
-                                TipsMap.set(this, tips);
+                    if (result.length > 0) {
+                        const tips = TipsMap.get(this) || {};
 
-                                return;
-                            }
+                        tips[propertyKey] = result;
+                        TipsMap.set(this, tips);
 
-                            keyValue = v;
-                        },
-                        get() {
-                            return keyValue;
-                        },
-                    });
-                }
-            }
+                        if (isValid) return;
+                    }
+
+                    keyValue = v;
+                },
+                get() {
+                    return keyValue;
+                },
+            });
         }
     }
 }

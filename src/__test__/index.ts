@@ -2,8 +2,8 @@ import { Validate, Type, Required, Min } from '../index';
 import Model from '../Model';
 
 class UserInfo extends Model {
-    constructor({ id, name, age }: UserInfo) {
-        super();
+    constructor({ id, name, age }: UserInfo, isValid: boolean) {
+        super(isValid);
         this.id = id;
         this.name = name;
         this.age = age;
@@ -20,7 +20,7 @@ class UserInfo extends Model {
 }
 
 try {
-    const [info1, user] = Validate(new UserInfo({ id: 123 }));
+    const [info1, user] = Validate(new UserInfo({ id: 123 }, false));
     console.log('1>>', info1);  // >> { name: [ 'not null.' ], age: [ 'min..not lt {0}' ] }
 
     // 1
