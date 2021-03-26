@@ -12,7 +12,7 @@ export const messages = {
 
 type RuleKeys = typeof messages;
 
-export default function Msg(params: { [P in keyof RuleKeys]?: string } = {}) {
+export function UpdateMessages(params: { [P in keyof RuleKeys]?: string } = {}) {
     assign(messages, params);
 
     Object.freeze(messages);
