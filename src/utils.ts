@@ -1,5 +1,6 @@
-import Rule, { TipsMap } from './Rule';
-import { PlainObject, Types, ValidateInfoList } from './typings';
+import { TIPS } from './Model';
+import Rule from './Rule';
+import { PlainObject, Types } from './typings';
 
 export const template = (s: string, ...params: any[]) => s.replace(/\{(\d+)\}/g, (_, index) => params[index]);
 
@@ -17,14 +18,14 @@ export const assign = (target: PlainObject, source: PlainObject): void => {
     });
 };
 
-export function Validate<T extends Object>(target: T, value?: T): [ValidateInfoList, T] {
+export function Validate<T extends Object>(target: T, value?: T): [{ [key: string]: string[] }, T] {
     if (value !== undefined) {
         assign(target, value);
     }
 
-    const ruleInfo = TipsMap.get(target);
+    const ruleInfo = target[TIPS];
 
-    TipsMap.set(target, null);
+    target[TIPS] = {};
 
     return [ruleInfo, target];
 }

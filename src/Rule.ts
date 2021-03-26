@@ -1,8 +1,4 @@
-import { ValidateInfoList } from './typings';
-
-export const RulesMap: Map<any, { [key: string]: Rule[] }> = new Map();
-
-export const TipsMap: Map<any, ValidateInfoList> = new Map();
+import { RULES } from './Model';
 
 export default class Rule {
     constructor({
@@ -40,13 +36,11 @@ export default class Rule {
         const self = this;
 
         return function validate({ constructor }: Object, propertyKey: string) {
-            if (!RulesMap.has(constructor)) RulesMap.set(constructor, {});
-
-            const rules = RulesMap.get(constructor)[propertyKey] ?? [];
+            const rules = constructor[RULES][propertyKey] ?? [];
 
             rules.push(self);
 
-            RulesMap.get(constructor)[propertyKey] = rules;
+            constructor[RULES][propertyKey] = rules;
         };
     }
 }

@@ -5,7 +5,3 @@ export type Types = 'undefined' | 'string' | 'null' | 'number' | 'number' | 'boo
 export type PlainObject = {
     [key: string]: any,
 }
-
-export type ValidateInfoList = {
-    [key: string]: string[],
-}
