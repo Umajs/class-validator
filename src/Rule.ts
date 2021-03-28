@@ -4,17 +4,17 @@ export default class Rule {
     constructor({
         ruleType,
         ruleParams = [],
-        validate,
         message,
+        validate,
     }: {
         ruleType: string,
         ruleParams?: any[],
+        message?: string,
         validate: (value: any) => boolean,
-        message: string,
     }) {
         this.ruleType = ruleType;
         this.ruleParams = ruleParams;
-        this.validate = validate ?? (() => { throw new Error('Params validate call not be null.'); });
+        this.validate = validate ?? (() => { throw new Error('Params "validate" call not be null.'); });
         this.message = message ?? `${ruleType} validate error.`;
     }
 
