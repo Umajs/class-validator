@@ -32,7 +32,7 @@ export default class Rule {
     message: string;
 
     add(): PropertyDecorator {
-        if (!(this instanceof Rule)) throw new Error('....');
+        if (!(this instanceof Rule)) throw new Error('"this instanceof Rule" equal false. This must be instanceof Rule.');
         const self = this;
 
         return function validate({ constructor }: Object, propertyKey: string) {
