@@ -1,8 +1,8 @@
-import { messages } from '../messages';
 import Rule from '../Rule';
+import { messages } from '../messages';
 import { type } from '../utils';
 
-export function Min(n: number, message: string = 'min..not lt {0}'): PropertyDecorator {
+export function Min(n: number, message: string = messages.Min): PropertyDecorator {
     const rule = new Rule({
         ruleType: 'Min',
         ruleParams: [n],

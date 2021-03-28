@@ -1,6 +1,6 @@
-import { messages } from '../messages';
 import Rule from '../Rule';
-import { type } from '../utils';
+import { messages } from '../messages';
+import { isEmpley } from '../utils';
 
 export function MinLength(n: number, message: string = messages.MinLength): PropertyDecorator {
     const rule = new Rule({
@@ -8,7 +8,7 @@ export function MinLength(n: number, message: string = messages.MinLength): Prop
         ruleParams: [n],
         message,
         validate(value: any): boolean {
-            if (type(value) !== 'number') return false;
+            if (isEmpley(value)) return false;
 
             return value.length > n;
         },
@@ -23,7 +23,7 @@ export function MaxLength(n: number, message: string = messages.MaxLength): Prop
         ruleParams: [n],
         message,
         validate(value: any): boolean {
-            if (type(value) !== 'number') return false;
+            if (isEmpley(value)) return false;
 
             return value.length < n;
         },
