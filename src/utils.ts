@@ -7,6 +7,8 @@ export const RULES = Symbol('Rules');
 
 export const undef = ((ud) => ud)();
 
+const objProto = Object.prototype;
+
 /**
  * 占位模版，例如
  * template('Hello, {0}', [world]); ==> 'Hello, world';
@@ -16,13 +18,13 @@ export const undef = ((ud) => ud)();
  */
 export const template = (tempStr: string, ...params: any[]) => tempStr.replace(/\{(\d+)\}/g, (_, index) => params[index]);
 
-export const toString = (obj: any): string => Object.prototype.toString.call(obj);
+export const toString = (obj: any): string => objProto.toString.call(obj);
 
 export const type = (obj: any): Types => <Types>toString(obj).slice(8, -1).toLowerCase();
 
 export const isEmpley = (obj: any): boolean => (obj === null || obj === undef);
 
-export const hasOwnProperty = (target: PlainObject, key: string): boolean => ({}.hasOwnProperty.call(target, key));
+export const hasOwnProperty = (target: PlainObject, key: string): boolean => objProto.hasOwnProperty.call(target, key);
 
 /**
  * 按目标 key 进行浅拷贝
