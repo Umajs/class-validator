@@ -32,13 +32,13 @@ export const hasOwnProperty = (target: PlainObject, key: string): boolean => obj
  * @param source 传入对象
  * @returns 目标
  */
-export const assign = (target: PlainObject, source: PlainObject): void => {
+export function assign<T extends PlainObject>(target: T, source: PlainObject): void {
     if (type(target) !== 'object' || type(source) !== 'object') return;
 
-    Object.keys(target).forEach((key) => {
+    for (const key in target) {
         if (hasOwnProperty(source, key)) target[key] = source[key];
-    });
-};
+    }
+}
 
 /**
  * 获取校验后的结果
