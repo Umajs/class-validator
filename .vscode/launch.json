@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
             "args": [
-                "test/index.ts"
+                "src/__test__/index.ts"
             ],
             "cwd": "${workspaceRoot}",
             "protocol": "inspector"
