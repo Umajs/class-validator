@@ -55,7 +55,7 @@ export function Validate<T extends Object>(target: T, value?: T): [{ [key: strin
 
     target[TIPS] = {};
 
-    return [ruleInfo, target];
+    return [Object.keys(ruleInfo).length === 0 ? null : ruleInfo, target];
 }
 
 /**

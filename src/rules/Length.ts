@@ -8,7 +8,7 @@ export function MinLength(n: number, message: string = messages.MinLength): Prop
         ruleParams: [n],
         message,
         validate(value: any): boolean {
-            if (isEmpley(value)) return false;
+            if (isEmpley(value)) return true;
 
             return value.length > n;
         },
@@ -23,7 +23,7 @@ export function MaxLength(n: number, message: string = messages.MaxLength): Prop
         ruleParams: [n],
         message,
         validate(value: any): boolean {
-            if (isEmpley(value)) return false;
+            if (isEmpley(value)) return true;
 
             return value.length < n;
         },
