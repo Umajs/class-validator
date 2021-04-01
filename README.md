@@ -11,7 +11,9 @@ npm i -S @umajs/model
 新建 class 然后加上校验装饰器
 
 > 【默认】继承 Model，在赋值的时候，值没通过校验的时候是不能给对应的属性赋值的，但是如果想要赋值成功，可以通过 ```super(false)``` 越过校验拦截（还是能正常拿到错误信息）
+>
 > eg1: class Info extends Model { constructor(params: Info, isValid: boolean) { super(isValid); } }
+>
 > eg2: class Info extends Model { constructor(params: Info) { super(false); } }
 
 ```js
