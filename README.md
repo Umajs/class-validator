@@ -73,6 +73,15 @@ export declare function UpdateMessages(params?: {
     [P in keyof RuleKeys]?: string;
 }): void;
 ```
+eg: 更改 Range 提示
+```js
+import { UpdateMessages } from '@umajs/model';
+
+UpdateMessages({
+    Range: '值必须介于 {0} 和 {1} 之间',    // {0}{1} 为占位符，会从 Rule 的参数 ruleParams 中取值
+});
+```
+
 
 #### 必需 Required
 ```js
@@ -104,6 +113,7 @@ export declare function MaxLength(n: number, message?: string): PropertyDecorato
 export function Email(message: string = messages.MaxLength): PropertyDecorator {
     const rule = new Rule({
         ruleType: 'Email',
+        ruleParams: [], // 供提示信息使用
         message: '必须为邮件格式，例如"xxx@xx.xx"',
         validate(value: any): boolean {
             if (isEmpley(value)) return true;
