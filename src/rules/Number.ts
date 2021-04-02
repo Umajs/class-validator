@@ -16,8 +16,12 @@ export function Min(n: number, message: string = messages.Min): PropertyDecorato
         },
     });
 
+    if (type(Min.messageTransform) === 'function') rule.messageTransform = Min.messageTransform;
+
     return rule.add();
 }
+
+Min.messageTransform = null;
 
 export function Max(n: number, message: string = messages.Max): PropertyDecorator {
     const rule = new Rule({
@@ -33,8 +37,12 @@ export function Max(n: number, message: string = messages.Max): PropertyDecorato
         },
     });
 
+    if (type(Max.messageTransform) === 'function') rule.messageTransform = Max.messageTransform;
+
     return rule.add();
 }
+
+Max.messageTransform = null;
 
 export function Range(min: number, max: number, message: string = messages.Range): PropertyDecorator {
     const rule = new Rule({
@@ -50,5 +58,9 @@ export function Range(min: number, max: number, message: string = messages.Range
         },
     });
 
+    if (type(Range.messageTransform) === 'function') rule.messageTransform = Range.messageTransform;
+
     return rule.add();
 }
+
+Range.messageTransform = null;
