@@ -1,14 +1,21 @@
 import Rule from './Rule';
-import { checker, hasOwnProperty, RULES, TIPS } from './utils';
+import { checker, hasOwnProperty, isEmpley, IS_VALID, RULES, TIPS } from './utils';
 
 export default class Model {
     constructor(isValid: boolean = true) {
         const rulesObj: { [key: string]: Rule[] } = this.constructor[RULES];
 
-        Object.defineProperty(this, TIPS, {
-            enumerable: false,
-            writable: true,
-            value: {},
+        Object.defineProperties(this, {
+            [TIPS]: {
+                enumerable: false,
+                writable: true,
+                value: {},
+            },
+            [IS_VALID]: {
+                enumerable: false,
+                writable: true,
+                value: isValid,
+            }
         });
 
         for (const key in rulesObj) {
@@ -27,6 +34,8 @@ export default class Model {
                         tipsObj[key] = tips;
 
                         if (isValid) return;
+                    } else if (!isEmpley(tipsObj[key])) {
+                        delete this[TIPS][key];
                     }
 
                     keyValue = val;

@@ -5,6 +5,8 @@ export const TIPS = Symbol('Tips');
 
 export const RULES = Symbol('Rules');
 
+export const IS_VALID = Symbol('isValid');
+
 export const undef = ((ud) => ud)();
 
 const objProto = Object.prototype;
@@ -53,7 +55,7 @@ export function Validate<T extends Object, K = string>(target: T, value?: T): [{
 
     const ruleInfo = target[TIPS];
 
-    target[TIPS] = {};
+    if (target[IS_VALID]) target[TIPS] = {};
 
     return [Object.keys(ruleInfo).length === 0 ? null : ruleInfo, target];
 }
