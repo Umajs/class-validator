@@ -115,3 +115,27 @@ export function Email(message: string = messages.MaxLength): PropertyDecorator {
     return rule.add();
 }
 ```
+
+
+#### 扩展提示信息
+
+- 可以通过 messageTransform 扩展提示信息。
+```js
+export function Required(message: string = messages.Required): PropertyDecorator {
+    const rule = new Rule({
+        ruleType: 'Required',
+        message,
+        validate(value: any): boolean {
+            return !isEmpley(value);
+        },
+        messageTransform(key: string, message: string) {
+            return { [key]: message };
+        }
+    });
+
+    return rule.add();
+}
+```
+
+- 通过装饰器函数的静态属性扩展已有的提示信息
+

@@ -46,7 +46,7 @@ export function assign<T extends PlainObject>(target: T, source: PlainObject): v
  * @param value 可选：给实例化对象传入的健值对
  * @returns [检验信息, 实例化对象]
  */
-export function Validate<T extends Object>(target: T, value?: T): [{ [key: string]: string[] }, T] {
+export function Validate<T extends Object, K = string>(target: T, value?: T): [{ [key: string]: K[] }, T] {
     if (value !== undefined) {
         assign(target, value);
     }
@@ -64,12 +64,18 @@ export function Validate<T extends Object>(target: T, value?: T): [{ [key: strin
  * @param value 被检验的值
  * @returns 校验信息
  */
-export function checker(rules: Rule[], value: any): string[] {
+export function checker<K = string>(rules: Rule[], key: string, value: any): K[] {
     const msgs = [];
 
     for (const rule of rules) {
         if (!rule.validate(value)) {
-            msgs.push(template(rule.message, rule.ruleParams));
+            const msg = template(rule.message, rule.ruleParams);
+
+            if (type(rule.messageTransform) === 'function') {
+                msgs.push(rule.messageTransform(key, msg));
+            } else {
+                msgs.push(msg);
+            }
         }
     }
 
