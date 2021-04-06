@@ -67,7 +67,7 @@ console.log(JSON.stringify(user));
 ### 规则 Rules
 参数中 message 是提示的错误信息，可以通过提供的 UpdateMessages 来更改默认信息
 
-#### 修改提示信息 UpdateMessages
+#### 修改提示信息模版 UpdateMessages
 ```js
 export declare function UpdateMessages(params?: {
     [P in keyof RuleKeys]?: string;
@@ -127,9 +127,12 @@ export function Email(message: string = messages.MaxLength): PropertyDecorator {
 ```
 
 
-#### 转换提示信息
+#### 转换提示信息格式 MessageTransform
 
 可以通过 MessageTransform 转换提示信息。
+- UpdateMessages 是更改提示信息的模版
+- MessageTransform 是修改提示信息的格式，此处的提示信息是从信息模版中拿到的信息
+
 ```js
 export { MessageTransform } from '@umajs/model';
 
