@@ -2,7 +2,7 @@
   "name": "@umajs/model",
   "description": "model validate, model schema, json schema",
   "keywords": ["model", "model validate", "model shema", "json schema"],
-  "version": "1.1.0",
+  "version": "1.0.9",
   "main": "lib/index.js",
   "files": [
     "lib"
