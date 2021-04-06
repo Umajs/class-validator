@@ -149,9 +149,11 @@ export function Required(message: string = messages.Required): PropertyDecorator
 
 - 通过装饰器函数的静态属性扩展已有的提示信息
 ```js
-export { Required } from '@umajs/model';
+export { MessageTransform } from '@umajs/model';
 
-Required.messageTransform = (key: string, message: string) => {
-    return { [key]: message };
-}
+MessageTransform((key: string, message: string, ruleParams: any[]) => {
+    return {
+        [key]: message,
+    }
+});
 ```

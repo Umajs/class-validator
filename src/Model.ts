@@ -15,7 +15,7 @@ export default class Model {
                 enumerable: false,
                 writable: true,
                 value: isValid,
-            }
+            },
         });
 
         for (const key in rulesObj) {

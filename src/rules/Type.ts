@@ -13,12 +13,8 @@ export function Type(t: Types, message: string = messages.Type): PropertyDecorat
         },
     });
 
-    if (type(Type.messageTransform) === 'function') rule.messageTransform = Type.messageTransform;
-
     return rule.add();
 }
-
-Type.messageTransform = null;
 
 export function Int(t: 'int8' | 'int32' | 'int64', message: string = messages.Type): PropertyDecorator {
     const rule = new Rule({
@@ -38,9 +34,5 @@ export function Int(t: 'int8' | 'int32' | 'int64', message: string = messages.Ty
         },
     });
 
-    if (type(Int.messageTransform) === 'function') rule.messageTransform = Int.messageTransform;
-
     return rule.add();
 }
-
-Int.messageTransform = null;
