@@ -65,7 +65,7 @@ console.log(JSON.stringify(user));
 ```
 
 ### 规则 Rules
-参数中 message 是提示的错误信息，可以通过提供的 UpdateMessages 来更改默认信息
+参数中可选的 message 是验证不通过的提示信息，本库提供了一套默认的提示信息，可以通过提供的 UpdateMessages 来更改默认的提示信息。
 
 #### 修改提示信息模版 UpdateMessages
 ```js
@@ -90,6 +90,10 @@ declare function Required(message?: string): PropertyDecorator;
 
 #### 类型 Type & Int
 ```js
+export type Types = 'undefined' | 'string' | 'null' | 'number' | 'number' | 'boolean'
+    | 'date' | 'function' | 'object' | 'array' | 'map' | 'set' | 'symbol' | 'function'
+    | 'promise' | 'weakset' | 'weakmap' | 'generatorfunction' | 'asyncfunction' | 'object' | 'regexp';
+
 export declare const Type: (t: Types, message?: string) => PropertyDecorator;
 export declare const Int: (t: 'int8' | 'int32' | 'int64', message?: string) => PropertyDecorator;
 ```
