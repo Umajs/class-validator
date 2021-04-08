@@ -12,7 +12,9 @@ const config = {
         sourcemap: ENV_PROD ? false : 'inline',
     },
     plugins: [
-        typescript(),
+        typescript({
+            module: 'esnext',
+        }),
         // eslint(),
     ]
 };
