@@ -1,7 +1,13 @@
 {
   "name": "@umajs/model",
-  "description": "model validate, model schema, json schema",
-  "keywords": ["model", "model validate", "model shema", "json schema"],
+  "description": "model validate, class validate, model schema, json schema",
+  "keywords": [
+    "model",
+    "model validate",
+    "class validate",
+    "model shema",
+    "json schema"
+  ],
   "version": "1.0.9",
   "main": "lib/index.js",
   "files": [
@@ -9,6 +15,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "@rollup/plugin-eslint": "^8.0.1",
+    "@rollup/plugin-typescript": "^8.2.1",
     "@types/node": "^14.14.35",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
@@ -20,16 +28,18 @@
     "eslint-plugin-typescript": "^0.14.0",
     "eslint-watch": "^7.0.0",
     "p-shells": "^3.0.3",
+    "rollup": "^2.44.0",
+    "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.2.3"
   },
   "scripts": {
     "fix": "esw src --fix --ext .ts",
     "lint": "eslint src --ext .ts",
     "lint-w": "esw src --clear --color -w --ext .ts",
-    "build-w": "tsc -w --inlineSourceMap",
+    "build-w": "rollup -c -w",
     "start": "parallelshell 'npm run lint-w' 'npm run build-w'",
     "prebuild": "npm run lint",
-    "build": "tsc",
+    "build": "NODE_ENV=production rollup -c",
     "prepublish": "npm run build"
   },
   "engine-strict": true,
