@@ -22,26 +22,32 @@ export default class Model {
             if (!hasOwnProperty(rulesObj, key)) continue;
 
             const rules = rulesObj[key];
-            let keyValue = this[key];
 
-            Object.defineProperty(this, key, {
-                enumerable: true,
-                set(val) {
-                    const tips = checker(rules, key, val);
-                    const tipsObj: { [key: string]: string[] } = this[TIPS];
-
-                    if (tips.length > 0) {
-                        tipsObj[key] = tips;
-
-                        if (isValid) return;
-                    } else if (!isEmpley(tipsObj[key])) {
-                        delete this[TIPS][key];
-                    }
-
-                    keyValue = val;
+            Object.defineProperties(this, {
+                [Symbol.for(key)]: {
+                    enumerable: false,
+                    writable: true,
+                    value: this[key],
                 },
-                get() {
-                    return keyValue;
+                [key]: {
+                    enumerable: true,
+                    set(val) {
+                        const tips = checker(rules, key, val);
+                        const tipsObj: { [key: string]: string[] } = this[TIPS];
+
+                        if (tips.length > 0) {
+                            tipsObj[key] = tips;
+
+                            if (isValid) return;
+                        } else if (!isEmpley(tipsObj[key])) {
+                            delete this[TIPS][key];
+                        }
+
+                        this[Symbol.for(key)] = val;
+                    },
+                    get() {
+                        return this[Symbol.for(key)];
+                    },
                 },
             });
         }
