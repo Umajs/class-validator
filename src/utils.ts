@@ -5,7 +5,7 @@ export const TIPS = Symbol('Tips');
 
 export const RULES = Symbol('Rules');
 
-export const IS_VALID = Symbol('isValid');
+export const VALID_BLOCK = Symbol('validBlock');
 
 export const undef = ((ud) => ud)();
 
@@ -55,7 +55,7 @@ export function Validate<T extends Object, K = string>(target: T, value?: T): [{
 
     const ruleInfo = target[TIPS];
 
-    if (target[IS_VALID]) target[TIPS] = {};
+    if (target[VALID_BLOCK]) target[TIPS] = {};
 
     return [Object.keys(ruleInfo).length === 0 ? null : ruleInfo, target];
 }

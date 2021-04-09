@@ -1,8 +1,8 @@
 import { Validate, Type, Required, Min, MessageTransform, Model } from '../index';
 
 class UserInfo extends Model {
-    constructor({ id, name, age }: UserInfo, isValid: boolean = true) {
-        super(isValid);
+    constructor({ id, name, age }: UserInfo, validBlock: boolean = true) {
+        super(validBlock);
         this.id = id;
         this.name = name;
         this.age = age;

@@ -1,8 +1,8 @@
 import Rule from './Rule';
-import { checker, hasOwnProperty, isEmpley, IS_VALID, RULES, TIPS } from './utils';
+import { checker, hasOwnProperty, isEmpley, VALID_BLOCK, RULES, TIPS } from './utils';
 
 export default class Model {
-    constructor(isValid: boolean = true) {
+    constructor(validBlock: boolean = true) {
         const rulesObj: { [key: string]: Rule[] } = this.constructor[RULES];
 
         Object.defineProperties(this, {
@@ -11,10 +11,10 @@ export default class Model {
                 writable: true,
                 value: {},
             },
-            [IS_VALID]: {
+            [VALID_BLOCK]: {
                 enumerable: false,
                 writable: true,
-                value: isValid,
+                value: validBlock,
             },
         });
 
@@ -38,7 +38,7 @@ export default class Model {
                         if (tips.length > 0) {
                             tipsObj[key] = tips;
 
-                            if (isValid) return;
+                            if (validBlock) return;
                         } else if (!isEmpley(tipsObj[key])) {
                             delete this[TIPS][key];
                         }
