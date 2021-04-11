@@ -1,5 +1,5 @@
 import Rule from './Rule';
-import { checker, hasOwnProperty, isEmpley, VALID_BLOCK, RULES, TIPS } from './utils';
+import { checker, hasOwnProperty, isEmpley, VALID_BLOCK, RULES, TIPS, symbol } from './utils';
 
 export default class Model {
     constructor(validBlock: boolean = true) {
@@ -24,7 +24,7 @@ export default class Model {
             const rules = rulesObj[key];
 
             Object.defineProperties(this, {
-                [Symbol.for(key)]: {
+                [symbol.for(key)]: {
                     enumerable: false,
                     writable: true,
                     value: this[key],
@@ -43,10 +43,10 @@ export default class Model {
                             delete this[TIPS][key];
                         }
 
-                        this[Symbol.for(key)] = val;
+                        this[symbol.for(key)] = val;
                     },
                     get() {
-                        return this[Symbol.for(key)];
+                        return this[symbol.for(key)];
                     },
                 },
             });

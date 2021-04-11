@@ -1,11 +1,23 @@
 import Rule from './Rule';
 import { PlainObject, Types } from './typings';
 
-export const TIPS = Symbol('Tips');
+export function symbol(desc: string | number) {
+    if (Symbol) return Symbol(desc);
 
-export const RULES = Symbol('Rules');
+    return `__umajs__${desc}__`;
+}
 
-export const VALID_BLOCK = Symbol('validBlock');
+symbol.for = function symbolFor(key: string) {
+    if (Symbol) return Symbol.for(key);
+
+    return `__umajs__${key}__`;
+};
+
+export const TIPS = symbol('Tips');
+
+export const VALID_BLOCK = symbol('validBlock');
+
+export const RULES = '__umajs__Rules__';
 
 export const undef = ((ud) => ud)();
 
