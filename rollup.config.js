@@ -14,6 +14,7 @@ const config = {
     plugins: [
         typescript({
             module: 'esnext',
+            inlineSourceMap: ENV_PROD ? false : true,
             exclude:[
                 './src/__test__/*',
             ],
