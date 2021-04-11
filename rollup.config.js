@@ -14,6 +14,9 @@ const config = {
     plugins: [
         typescript({
             module: 'esnext',
+            exclude:[
+                './src/__test__/*',
+            ],
         }),
         // eslint(),
     ]
