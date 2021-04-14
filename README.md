@@ -1,6 +1,6 @@
-# @umajs/model
+# @umajs/class-validator
 
-这是一个基于 Model 的装饰器校验库，通过给 class 的属性加上装饰器给属性来加上属性校验。
+这是一个基于装饰器的校验库，通过给 class 的属性加上装饰器给属性来加上属性校验。
 
 ### Installation
 ```shell
