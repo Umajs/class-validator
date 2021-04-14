@@ -1,5 +1,5 @@
 {
-  "name": "@umajs/model",
+  "name": "@umajs/class-validator",
   "description": "model validate, class validate, model schema, json schema",
   "keywords": [
     "model",
@@ -8,7 +8,7 @@
     "model shema",
     "json schema"
   ],
-  "version": "1.0.10",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "files": [
     "lib"
