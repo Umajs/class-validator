@@ -1,10 +1,12 @@
 # @umajs/class-validator
 
+本项目已重命名为[@umajs/class-validator](https://www.npmjs.com/package/@umajs/class-validator)
+
 这是一个基于装饰器的校验库，通过给 class 的属性加上装饰器给属性来加上属性校验。
 
 ### Installation
 ```shell
-npm i -S @umajs/model
+npm i -S @umajs/class-validator
 ```
 
 ### Usage
@@ -17,7 +19,7 @@ npm i -S @umajs/model
 > eg2: class Info extends Model { constructor(params: Info) { super(false); } }
 
 ```js
-import { Model, Validate, Type, Required, Min } from '@umajs/model';
+import { Model, Validate, Type, Required, Min } from '@umajs/class-validator';
 
 class UserInfo extends Model {
     constructor({ id, name, age }: UserInfo) {
@@ -75,7 +77,7 @@ export declare function UpdateMessages(params?: {
 ```
 eg: 更改 Range 提示
 ```js
-import { UpdateMessages } from '@umajs/model';
+import { UpdateMessages } from '@umajs/class-validator';
 
 UpdateMessages({
     Range: '值必须介于 {0} 和 {1} 之间',    // {0}{1} 为占位符，会从 Rule 的参数 ruleParams 中取值
@@ -153,7 +155,7 @@ class UserInfo extends Model {
 
 }
 
-export { MessageTransform } from '@umajs/model';
+export { MessageTransform } from '@umajs/class-validator';
 
 MessageTransform((key: string, message: string, ruleType: string) => {
     return {
