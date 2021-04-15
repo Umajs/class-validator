@@ -138,6 +138,10 @@ export function Email(message: string = messages.MaxLength): PropertyDecorator {
 - MessageTransform 是修改提示信息的格式，此处的提示信息是从信息模版中拿到的信息
 
 ```js
+export declare function MessageTransform(transFn: (key: string, message: string, ruleType?: string, ruleParams?: any[]) => any): void;
+```
+
+```js
 class UserInfo extends Model {
     constructor({ name }: UserInfo) {
         super();
@@ -151,12 +155,12 @@ class UserInfo extends Model {
 
 export { MessageTransform } from '@umajs/model';
 
-MessageTransform((key: string, message: string, ruleParams: any[]) => {
+MessageTransform((key: string, message: string, ruleType: string) => {
     return {
-        [key]: message,
+        [ruleType]: message,
     }
 });
 
 const [info1, user] = Validate(new UserInfo({}));
-console.log('1>>', info1);  // >> { name: [{ name: 'not null.' }] }
+console.log('1>>', info1);  // >> { name: [ { Required: 'not null' } ] }
 ```

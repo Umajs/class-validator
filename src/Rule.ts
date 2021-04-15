@@ -31,7 +31,7 @@ export default class Rule<K = string> {
 
     message: string;
 
-    get messageTransform(): (key: string, message: string, ruleParams: any[]) => K {
+    get messageTransform(): (key: string, message: string, ruleType: string, ruleParams: any[]) => K {
         return null;
     }
 
@@ -49,7 +49,7 @@ export default class Rule<K = string> {
     }
 }
 
-export function MessageTransform(transFn: (key: string, message: string, ruleParams?: any[]) => any) {
+export function MessageTransform(transFn: (key: string, message: string, ruleType?: string, ruleParams?: any[]) => any) {
     Object.defineProperty(Rule.prototype, 'messageTransform', {
         get: () => transFn,
     });

@@ -86,7 +86,7 @@ export function checker<K = string>(rules: Rule[], key: string, value: any): K[]
             const msg = template(rule.message, rule.ruleParams);
 
             if (type(rule.messageTransform) === 'function') {
-                msgs.push(rule.messageTransform(key, msg, rule.ruleParams));
+                msgs.push(rule.messageTransform(key, msg, rule.ruleType, rule.ruleParams));
             } else {
                 msgs.push(msg);
             }
