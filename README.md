@@ -116,7 +116,7 @@ export function Email(message: string = messages.MaxLength): PropertyDecorator {
 }
 ```
 
-### Init
+### Init (Optional 可选)
 如果需要修改提示信息，或者转换提示信息的格式，请在使用前调用 Init 方法
 ```js
 export declare function Init({ updateMessages, messageTransform, }: {
