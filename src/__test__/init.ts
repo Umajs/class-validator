@@ -1,5 +1,16 @@
 import { Validate, Type, Required, Min, Init, Model } from '../index';
 
+Init({
+    updateMessages: {
+        Required: '不能为空',
+    },
+    messageTransform: (key: string, message: string, ruleType: string) => {
+        return {
+            [ruleType]: message,
+        }
+    },
+});
+
 class UserInfo extends Model {
     constructor({ id, name, age }: UserInfo, validBlock: boolean = true) {
         super(validBlock);
