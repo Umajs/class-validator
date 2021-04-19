@@ -69,22 +69,6 @@ console.log(JSON.stringify(user));
 ### 规则 Rules
 参数中可选的 message 是验证不通过的提示信息，本库提供了一套默认的提示信息，可以通过提供的 UpdateMessages 来更改默认的提示信息。
 
-#### 修改提示信息模版 UpdateMessages
-```js
-export declare function UpdateMessages(params?: {
-    [P in keyof RuleKeys]?: string;
-}): void;
-```
-eg: 更改 Range 提示
-```js
-import { UpdateMessages } from '@umajs/class-validator';
-
-UpdateMessages({
-    Range: '值必须介于 {0} 和 {1} 之间',    // {0}{1} 为占位符，会从 Rule 的参数 ruleParams 中取值
-});
-```
-
-
 #### 必需 Required
 ```js
 declare function Required(message?: string): PropertyDecorator;
@@ -132,18 +116,45 @@ export function Email(message: string = messages.MaxLength): PropertyDecorator {
 }
 ```
 
-
-#### 转换提示信息格式 MessageTransform
-
-可以通过 MessageTransform 转换提示信息。
-- UpdateMessages 是更改提示信息的模版
-- MessageTransform 是修改提示信息的格式，此处的提示信息是从信息模版中拿到的信息
-
+### Init
+如果需要修改提示信息，或者转换提示信息的格式，请在使用前调用 Init 方法
 ```js
-export declare function MessageTransform(transFn: (key: string, message: string, ruleType?: string, ruleParams?: any[]) => any): void;
+export declare function Init({ updateMessages, messageTransform, }: {
+    updateMessages?: {
+        [P in keyof RuleKeys]?: string;
+    };
+    messageTransform?: (key: string, message: string, ruleType?: string, ruleParams?: any[]) => void;
+}): void;
+```
+- updateMessages 是更改提示信息的模版
+- messageTransform 是修改提示信息的格式，此处的提示信息是从信息模版中拿到的信息
+
+#### 修改提示信息模版 updateMessages
+eg: 更改 Range 提示
+```js
+import { Init } from '@umajs/class-validator';
+
+Init({
+    updateMessages: {
+        Range: '值必须介于 {0} 和 {1} 之间',    // {0}{1} 为占位符，会从 Rule 的参数 ruleParams 中取值
+    },
+});
 ```
 
+#### 转换提示信息格式 messageTransform
+
+可以通过 messageTransform 转换提示信息。
 ```js
+export { Init } from '@umajs/class-validator';
+
+Init({
+    messageTransform: (key: string, message: string, ruleType: string) => {
+        return {
+            [ruleType]: message,
+        }
+    },
+});
+
 class UserInfo extends Model {
     constructor({ name }: UserInfo) {
         super();
@@ -154,14 +165,6 @@ class UserInfo extends Model {
     name?: string;
 
 }
-
-export { MessageTransform } from '@umajs/class-validator';
-
-MessageTransform((key: string, message: string, ruleType: string) => {
-    return {
-        [ruleType]: message,
-    }
-});
 
 const [info1, user] = Validate(new UserInfo({}));
 console.log('1>>', info1);  // >> { name: [ { Required: 'not null' } ] }

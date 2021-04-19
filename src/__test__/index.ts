@@ -1,4 +1,15 @@
-import { Validate, Type, Required, Min, MessageTransform, Model } from '../index';
+import { Validate, Type, Required, Min, Init, Model } from '../index';
+
+Init({
+    updateMessages: {
+        Required: '不能为空',
+    },
+    messageTransform: (key: string, message: string, ruleType: string) => {
+        return {
+            [ruleType]: message,
+        }
+    },
+});
 
 class UserInfo extends Model {
     constructor({ id, name, age }: UserInfo, validBlock: boolean = true) {
@@ -19,12 +30,6 @@ class UserInfo extends Model {
 }
 
 try {
-    MessageTransform((key: string, message: string, ruleType: string) => {
-        return {
-            [ruleType]: message,
-        }
-    });
-
     const [info1, user] = Validate(new UserInfo({ id: 123, age: 3 }));
     console.log('1>>', info1);  // >> { name: [ 'not null.' ] }
 

@@ -11,7 +11,7 @@ export const messages = {
     MaxLength: 'min.length.not gt {0}',
 };
 
-type RuleKeys = typeof messages;
+export type RuleKeys = typeof messages;
 
 export function UpdateMessages(params: { [P in keyof RuleKeys]?: string } = {}) {
     assign(messages, params);
