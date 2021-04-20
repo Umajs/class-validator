@@ -67,7 +67,7 @@ console.log(JSON.stringify(user));
 ```
 
 ### 规则 Rules
-参数中可选的 message 是验证不通过的提示信息，本库提供了一套默认的提示信息，可以通过提供的 UpdateMessages 来更改默认的提示信息。
+参数中可选的 message 是验证不通过的提示信息，本库提供了一套默认的提示信息，可以通过提供的 Init 方法的 updateMessages 参数来更改默认的提示信息。
 
 #### 必需 Required
 ```js
@@ -117,12 +117,10 @@ export function Email(message: string = messages.MaxLength): PropertyDecorator {
 ```
 
 ### Init (Optional 可选)
-如果需要修改提示信息，或者转换提示信息的格式，请在使用前调用 Init 方法
+如果需要修改提示信息，或者转换提示信息的格式，请在使用前调用 Init 方法。
 ```js
 export declare function Init({ updateMessages, messageTransform, }: {
-    updateMessages?: {
-        [P in keyof RuleKeys]?: string;
-    };
+    updateMessages?: { [P in keyof RuleKeys]?: string };
     messageTransform?: (key: string, message: string, ruleType?: string, ruleParams?: any[]) => void;
 }): void;
 ```
@@ -142,8 +140,7 @@ Init({
 ```
 
 #### 转换提示信息格式 messageTransform
-
-可以通过 messageTransform 转换提示信息。
+可以通过 messageTransform 转换提示信息格式
 ```js
 export { Init } from '@umajs/class-validator';
 
