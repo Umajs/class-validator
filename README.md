@@ -125,6 +125,7 @@ export declare function Init({ updateMessages, messageTransform, }: {
 }): void;
 ```
 - updateMessages 是更改提示信息的模版
+> message 模版采用的简单的占位模版，其中序号 0 是校验的字段名称，0 之后的是 ruleParams 中的值
 - messageTransform 是修改提示信息的格式，此处的提示信息是从信息模版中拿到的信息
 
 #### 修改提示信息模版 updateMessages
