@@ -135,7 +135,7 @@ import { Init } from '@umajs/class-validator';
 
 Init({
     updateMessages: {
-        Range: '值必须介于 {0} 和 {1} 之间',    // {0}{1} 为占位符，会从 Rule 的参数 ruleParams 中取值
+        Range: '{0} 的值必须介于 {1} 和 {2} 之间',    // {0}{1}{2} 为占位符，0读取字段名称，1开始会从 Rule 的参数 ruleParams 中取值
     },
 });
 ```
