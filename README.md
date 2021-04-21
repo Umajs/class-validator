@@ -40,7 +40,7 @@ class UserInfo extends Model {
 }
 ```
 
-执行 ```Validate``` 获取获取信息
+执行 ```Validate``` 获取获取校验信息，获取之后校验信息置空，重新赋值可能会产生新的校验信息，可以再次通过```Validate``` 获取获取校验信息。
 ```js
 declare function Validate<T extends Object>(target: T, value?: T): [{
     [key: string]: string[];
