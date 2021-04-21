@@ -49,21 +49,21 @@ declare function Validate<T extends Object>(target: T, value?: T): [{
 
 如下：
 ```js
-const [info1, user] = Validate(new UserInfo({ id: 123 }));
-console.log('1>>', info1);  // >> { name: [ 'not null.' ] }
+const [info1, user] = Validate(new UserInfo({ id: 123, age: 3 }));
+console.log('1>>', info1);  // >> { name: [ 'name is required.' ] }
 
 // 1
-const [info2] = Validate(user, { 'id': 456, age: -1 });
-console.log('2>>', info2);  // >> { age: [ 'min..not lt {0}' ] }
+const [info2] = Validate(user, { 'id': 456 });
+console.log('2>>', info2);  // >> null
 
 // 2
 user.id = 456;
 user.name = undefined;
 user.age = -2;
 const [info3] = Validate(user);
-console.log('3>>', info3);  // >> { name: [ 'not null.' ], age: [ 'min..not lt {0}' ] }
+console.log('3>>', info3);  // >> { name: [ 'name is required.' ], age: [ 'age must be greater than 0.' ] }
 
-console.log(JSON.stringify(user));
+console.log(JSON.stringify(user));  // >> {"id":456,"age":3}
 ```
 
 ### 规则 Rules

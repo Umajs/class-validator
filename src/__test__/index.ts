@@ -20,7 +20,7 @@ class UserInfo extends Model {
 
 try {
     const [info1, user] = Validate(new UserInfo({ id: 123, age: 3 }));
-    console.log('1>>', info1);  // >> { name: [ 'not null.' ] }
+    console.log('1>>', info1);  // >> { name: [ 'name is required.' ] }
 
     // 1
     const [info2] = Validate(user, { 'id': 456 });
@@ -31,7 +31,7 @@ try {
     user.name = undefined;
     user.age = -2;
     const [info3] = Validate(user);
-    console.log('3>>', info3);  // >> { name: [ 'not null.' ], age: [ 'min..not lt {0}' ] }
+    console.log('3>>', info3);  // >> { name: [ 'name is required.' ], age: [ 'age must be greater than 0.' ] }
 
     console.log(JSON.stringify(user), Object.assign({}, user));     // >> {"id":456,"age":3} { id: 456, name: undefined, age: 3 }
 } catch (err) {
