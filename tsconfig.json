@@ -10,7 +10,7 @@
         "inlineSourceMap": true,
         "declaration": true,
         "alwaysStrict": true,
-        "removeComments": true,
+        "removeComments": false,
         "preserveWatchOutput": true,
         "experimentalDecorators": true
     },
