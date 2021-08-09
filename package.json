@@ -8,12 +8,11 @@
     "model shema",
     "json schema"
   ],
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-eslint": "^8.0.1",
     "@rollup/plugin-typescript": "^8.2.1",

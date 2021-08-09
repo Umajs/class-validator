@@ -52,6 +52,4 @@ export default class Model {
             });
         }
     }
-
-    static [RULES]: { [key: string]: Rule[] } = {};
 }

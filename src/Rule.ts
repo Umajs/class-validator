@@ -40,6 +40,8 @@ export default class Rule<K = string> {
         const self = this;
 
         return function validate({ constructor }: Object, propertyKey: string) {
+            if (!constructor[RULES]) constructor[RULES] = {};
+
             const rules = constructor[RULES][propertyKey] ?? [];
 
             rules.push(self);
