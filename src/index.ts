@@ -7,6 +7,7 @@ export { Required } from './rules/Required';
 export { Type, Int } from './rules/Type';
 export { Min, Max } from './rules/Number';
 export { MinLength, MaxLength } from './rules/Length';
+export { Complex } from './rules/Complex';
 
 export { default as Rule } from './Rule';
 export { default as Model } from './Model';

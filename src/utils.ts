@@ -1,4 +1,5 @@
 import Rule from './Rule';
+import Model from './Model';
 import { PlainObject, Types } from './typings';
 
 export function symbol(desc: string | number) {
@@ -65,7 +66,7 @@ export function Validate<T extends Object, K = string>(target: T, value?: T): [{
         assign(target, value);
     }
 
-    const ruleInfo = target[TIPS];
+    const ruleInfo = target[TIPS] ?? {};
 
     if (target[VALID_BLOCK]) target[TIPS] = {};
 
@@ -83,6 +84,16 @@ export function checker<K = string>(rules: Rule[], key: string, value: any): K[]
     const msgs = [];
 
     for (const rule of rules) {
+        if (rule.ruleType === 'Complex') {
+            if (!(value instanceof Model)) {
+                const exModel = rule.ruleParams[0];
+
+                if (exModel) value = new exModel(value);
+                else console.error(`${key}' value is not extends Model or @Complex(x)'s x is null, Pls read the usages in README.md.`);
+            }
+            return [<any>Validate(value)[0]];
+        }
+
         if (!rule.validate(value)) {
             const msg = template(rule.message, [key].concat(rule.ruleParams));
 

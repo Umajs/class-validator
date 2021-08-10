@@ -14,6 +14,17 @@
             ],
             "cwd": "${workspaceRoot}",
             "protocol": "inspector"
+        },
+        {
+            "name": "complex",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
+            "args": [
+                "src/__test__/complex.ts"
+            ],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector"
         }
     ]
 }
