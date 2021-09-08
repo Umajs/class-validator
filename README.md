@@ -97,6 +97,23 @@ export declare function MinLength(n: number, message?: string): PropertyDecorato
 export declare function MaxLength(n: number, message?: string): PropertyDecorator;
 ```
 
+#### 嵌套（混合） Complex
+```js
+export declare function Complex(model?: Model): PropertyDecorator;
+```
+
+```js
+class UserExtraInfo extends Model {
+    @Required()
+    addr?: string;
+}
+
+class UserInfo extends Model {
+    @Complex(UserExtraInfo)
+    extraInfo?: UserExtraInfo;
+}
+```
+
 #### 扩展规则
 假设需要扩展一个 Email 规则，示例如下：
 ```js
