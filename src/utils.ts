@@ -86,11 +86,12 @@ export function checker<K = string>(rules: Rule[], key: string, value: any): K[]
     for (const rule of rules) {
         if (rule.ruleType === 'Complex') {
             if (!(value instanceof Model)) {
-                const exModel = rule.ruleParams[0];
+                const ExModel = rule.ruleParams[0];
 
-                if (exModel) value = new exModel(value);
+                if (ExModel) value = new ExModel(value);
                 else console.error(`${key}' value is not extends Model or @Complex(x)'s x is null, Pls read the usages in README.md.`);
             }
+
             return [<any>Validate(value)[0]];
         }
 
