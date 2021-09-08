@@ -1,7 +1,7 @@
 import { Model } from '..';
 import Rule from '../Rule';
 
-export function Complex(model: Model): PropertyDecorator {
+export function Complex(model?: Model): PropertyDecorator {
     const rule = new Rule({
         ruleType: 'Complex',
         ruleParams: [model],
